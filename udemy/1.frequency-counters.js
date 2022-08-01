@@ -114,5 +114,40 @@
   }
 
   // {a: 0, n: 0, g: 0, r: 0, m: 0,s:1}
-  validAnagram("anagrams", "nagaramm");
+  // validAnagram("anagrams", "nagaramm");
+}
+
+// ❓ Frequency Counter - sameFrequency
+// Write a function called sameFrequency. Given two positive integers, find out if the two numbers have the same frequency of digits.
+{
+  function sameFrequency(num1, num2) {
+    const str1 = num1.toString();
+    const str2 = num2.toString();
+
+    // 길이가 같은지 확인
+    if (str1.length !== str2.length) return false;
+
+    // 숫자가 담긴 객체 만들기 - for문
+    const lookup = {};
+
+    for (let num of str1) {
+      lookup[num] = lookup[num] + 1 || 1;
+    }
+
+    // 비교하기 - for문
+    for (let num of str2) {
+      if (!lookup[num]) {
+        return false;
+      } else {
+        lookup[num] -= 1;
+      }
+    }
+
+    return true;
+  }
+
+  console.log(sameFrequency(182, 281)); // true
+  console.log(sameFrequency(34, 14)); // false
+  console.log(sameFrequency(3589578, 5879385)); // true
+  console.log(sameFrequency(22, 222)); // false
 }
