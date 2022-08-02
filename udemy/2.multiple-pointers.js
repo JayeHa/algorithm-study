@@ -115,3 +115,47 @@
     return maxSum;
   }
 }
+
+// 📌 Frequency Counter / Multiple Pointers - areThereDuplicates
+// ⚠️ 정렬했어야...
+{
+  function areThereDuplicates(...args) {
+    let i = 0;
+    let j;
+    for (j = i + 1; j < args.length; j++) {
+      if (args[i] !== args[j]) {
+        args[++i] = args[j];
+      } else {
+        return true;
+      }
+    }
+  }
+  console.log(areThereDuplicates(1, 2, 3)); // false
+  console.log(areThereDuplicates(1, 2, 2)); // true
+  console.log(areThereDuplicates("a", "b", "c", "a")); // true
+}
+
+// 정답
+{
+  function areThereDuplicates(...args) {
+    // Two pointers
+    args.sort((a, b) => a > b);
+    let start = 0;
+    let next = 1;
+    while (next < args.length) {
+      if (args[start] === args[next]) {
+        return true;
+      }
+      start++;
+      next++;
+    }
+    return false;
+  }
+}
+
+// One Liner 솔루션
+{
+  function areThereDuplicates() {
+    return new Set(arguments).size !== arguments.length;
+  }
+}
