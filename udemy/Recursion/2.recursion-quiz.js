@@ -1,5 +1,6 @@
 // 📌 reverse
 // Write a recursive function called reverse which accepts a string and returns a new string in reverse.
+
 {
   function reverse(text) {
     const arr = [];
@@ -38,9 +39,19 @@
   }
 }
 
-// 📌 isPalindrome
+// 📌 isPalindrome 👉 다시 풀어보기
 // Write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome (reads the same forward and backward).
 // Otherwise it returns false.
+{
+  function isPalindrome() {}
+
+  // console.log(isPalindrome("awesome")); // false
+  // console.log(isPalindrome("foobar")); // false
+  // console.log(isPalindrome("tacocat")); // true
+  // console.log(isPalindrome("amanaplanacanalpanama")); // true
+  // console.log(isPalindrome("amanaplanacanalpandemonium")); // false
+}
+
 {
   function isPalindrome(text) {
     if (text.length === 1) return true;
@@ -74,6 +85,7 @@
 // 📌 someRecursive
 // Write a recursive function called someRecursive which accepts an array and a callback.
 // The function returns true if a single value in the array returns true when passed to the callback. Otherwise it returns false.
+
 {
   // SAMPLE INPUT / OUTPUT
   const isOdd = (val) => val % 2 !== 0;
@@ -90,6 +102,16 @@
   // console.log(someRecursive([4, 6, 8], (val) => val > 10)); // false
 }
 
+// 다시 풀어봄
+{
+  function someRecursive(arr, callback) {
+    if (arr.length === 0) return false;
+    if (callback(arr[0])) return true;
+
+    return someRecursive(arr.slice(1), callback);
+  }
+}
+
 // someRecursive 솔루션 ✨
 {
   function someRecursive(array, callback) {
@@ -99,8 +121,16 @@
   }
 }
 
-// 📌 flatten
+// 📌 flatten 👉 다시 풀어보기
 // Write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened.
+{
+  function flatten(arr) {}
+
+  // console.log(flatten([1, 2, 3, [4, 5]])); // [1, 2, 3, 4, 5]
+  // console.log(flatten([1, [2, [3, 4], [[5]]]])); // [1, 2, 3, 4, 5]
+  // console.log(flatten([[1], [2], [3]])); // [1,2,3]
+  // console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]
+}
 
 // 솔루션 보고 난 뒤에 다시 푼 답
 {

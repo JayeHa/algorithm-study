@@ -14,7 +14,7 @@
 {
   function power(base, exponent) {
     if (exponent === 0) return 1;
-    if (exponent === 1) return base;
+    if (exponent === 1) return base; // 👉 굳이 필요없음..
     return base * power(base, exponent - 1);
   }
 
@@ -51,7 +51,7 @@
 // FACTORIAL 솔루션
 {
   function factorial(x) {
-    if (x < 0) return 0;
+    if (x < 0) return 0; // ✨
     if (x <= 1) return 1;
     return x * factorial(x - 1);
   }
@@ -72,6 +72,17 @@
     helper(arr);
 
     return result;
+  }
+
+  // console.log(productOfArray([1, 2, 3])); // 6
+  // console.log(productOfArray([1, 2, 3, 10])); // 60
+}
+
+// 다시 풀어봄
+{
+  function productOfArray(arr) {
+    if (arr.length === 0) return 1;
+    return arr[0] * productOfArray(arr.slice(1));
   }
 
   // console.log(productOfArray([1, 2, 3])); // 6
@@ -109,9 +120,18 @@
   }
 }
 
-// 📌 fib
+// 📌 fib 👉 나중에 다시 풀어보기
 // Write a recursive function called fib which accepts a number and returns the nth number in the Fibonacci sequence.
 // Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... which starts with 1 and 1, and where every number thereafter is equal to the sum of the previous two numbers.
+{
+  function fib(number) {}
+
+  // console.log(fib(4)); // 3
+  // console.log(fib(10)); // 55
+  // console.log(fib(28)); // 317811
+  // console.log(fib(35)); // 9227465
+}
+
 {
   function fib(number) {
     let order = 2;
