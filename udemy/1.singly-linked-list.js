@@ -27,15 +27,30 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.head) return;
+    let current = this.head;
+    let newTail = current;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
 }
 
-// var first = new Node("Hi")
-// first.next = new Node("there")
-// first.next.next = new Node("how")
-// first.next.next.next = new Node("are")
-// first.next.next.next.next = new Node("you")
-
 const list = new SinglyLinkedList();
-console.log(list.push("HELLO"));
-console.log(list.push("GOODBYE"));
-console.log(list.push("!!"));
+list.push("HELLO");
+list.push("GOODBYE");
+list.push("!!");
+console.log(list.pop());
+console.log(list);
