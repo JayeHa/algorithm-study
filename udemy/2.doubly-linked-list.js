@@ -71,10 +71,35 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    let count, current;
+    if (index <= this.length / 2) {
+      count = 0;
+      current = this.head;
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    } else {
+      count = this.length - 1;
+      current = this.tail;
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
+    }
+    return current;
+  }
 }
 
 const list = new DoublyLinkedList();
-list.unshift("HI");
-list.unshift("THERE");
-list.unshift("!!");
-console.log(list);
+list.push("0번째");
+list.push("1번째");
+list.push("2번째");
+list.push("3번째");
+list.push("4번째");
+list.push("5번째");
+console.log(list.get(5));
