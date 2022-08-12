@@ -115,13 +115,33 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
   }
+  reverse() {
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      [current.next, current.prev] = [current.prev, current.next];
+      current = current.prev;
+    }
+    this.head = this.tail;
+    this.tail = current;
+    return this;
+  }
+  print() {
+    const arr = [];
+    let current = this.head;
+    for (let i = 0; i < this.length; i++) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
 }
 
-var doublyLinkedList = new DoublyLinkedList();
+let doublyLinkedList = new DoublyLinkedList();
 doublyLinkedList.push(5).push(10).push(15).push(20);
-console.log(doublyLinkedList.remove(2).val); // 15
-console.log(doublyLinkedList.remove(100)); // undefined
-console.log(doublyLinkedList.length); // 3
-console.log(doublyLinkedList.head.val); // 5
-console.log(doublyLinkedList.head.next.val); // 10
-console.log(doublyLinkedList.head.next.next.val); // 20
+console.log(doublyLinkedList.reverse()); // singlyLinkedList
+console.log(doublyLinkedList.length); // 4
+console.log(doublyLinkedList.head.val); // 20
+console.log(doublyLinkedList.head.next.val); // 15
+console.log(doublyLinkedList.head.next.next.val); // 10
+console.log(doublyLinkedList.head.next.next.next.val); // 5
+doublyLinkedList.print();
