@@ -102,15 +102,26 @@ class DoublyLinkedList {
     foundedNode.val = val;
     return true;
   }
+  remove(index) {
+    if (index < 0 || index >= this.length) return;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const beforeNode = this.get(index - 1);
+    const removedNode = beforeNode.next;
+    const afterNode = removedNode.next;
+    (beforeNode.next = afterNode), (afterNode.prev = beforeNode);
+    (removedNode.prev = null), (removedNode.next = null);
+    this.length--;
+    return removedNode;
+  }
 }
+
 var doublyLinkedList = new DoublyLinkedList();
-
 doublyLinkedList.push(5).push(10).push(15).push(20);
-console.log(doublyLinkedList.set(0, 10)); // true
-console.log(doublyLinkedList.length); // 4
-console.log(doublyLinkedList.head.val); // 10
-
-console.log(doublyLinkedList.set(10, 10)); // false
-
-console.log(doublyLinkedList.set(2, 100)); // true
-console.log(doublyLinkedList.head.next.next.val); // 100
+console.log(doublyLinkedList.remove(2).val); // 15
+console.log(doublyLinkedList.remove(100)); // undefined
+console.log(doublyLinkedList.length); // 3
+console.log(doublyLinkedList.head.val); // 5
+console.log(doublyLinkedList.head.next.val); // 10
+console.log(doublyLinkedList.head.next.next.val); // 20
