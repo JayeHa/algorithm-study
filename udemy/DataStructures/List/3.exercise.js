@@ -74,34 +74,34 @@ class DoublyLinkedList {
     this.length--;
     return removedNode;
   }
+  get(index) {
+    if (index < 0 || index >= this.length) return null;
+
+    let foundedNode;
+    let counter;
+    if (index <= this.length / 2) {
+      foundedNode = this.head;
+      counter = 0;
+      while (counter !== index) {
+        foundedNode = foundedNode.next;
+        counter++;
+      }
+    } else {
+      foundedNode = this.tail;
+      counter = this.length - 1;
+      while (counter !== index) {
+        foundedNode = foundedNode.prev;
+        counter--;
+      }
+    }
+    return foundedNode;
+  }
 }
-
 var doublyLinkedList = new DoublyLinkedList();
-console.log(doublyLinkedList.push(5)); // doublyLinkedList
-console.log(doublyLinkedList.length); // 1
-console.log(doublyLinkedList.head.val); // 5
-console.log(doublyLinkedList.tail.val); // 5
-console.log(doublyLinkedList.head.prev); // null
-console.log(doublyLinkedList.push(10));
-console.log(doublyLinkedList);
-console.log(doublyLinkedList.length); // 2
-console.log(doublyLinkedList.head.val); // 5
-console.log(doublyLinkedList.head.next.val); // 10
-console.log(doublyLinkedList.tail.val); // 10
-console.log(doublyLinkedList.head.next.prev.val); // 10
-console.log(doublyLinkedList.push(15));
-console.log(doublyLinkedList);
-console.log(doublyLinkedList.length); // 3
-console.log(doublyLinkedList.head.val); // 5
-console.log(doublyLinkedList.tail.val); // 15
-console.log(doublyLinkedList.tail.prev.val); // 10
-console.log(doublyLinkedList.head.next.next.val); // 15
 
-console.log(doublyLinkedList.pop().val); // 15
-console.log(doublyLinkedList.length); // 2
-console.log(doublyLinkedList.pop().val); // 10
-console.log(doublyLinkedList.length); // 1
-console.log(doublyLinkedList.pop().val); // 5
-console.log(doublyLinkedList.length); // 0
-console.log(doublyLinkedList.pop()); // undefined
-console.log(doublyLinkedList.length); // 0
+doublyLinkedList.push(5).push(10).push(15).push(20);
+console.log(doublyLinkedList.get(0).val); // 5
+console.log(doublyLinkedList.get(1).val); // 10
+console.log(doublyLinkedList.get(2).val); // 15
+console.log(doublyLinkedList.get(3).val); // 20
+console.log(doublyLinkedList.get(4)); // null
