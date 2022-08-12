@@ -96,12 +96,21 @@ class DoublyLinkedList {
     }
     return foundedNode;
   }
+  set(index, val) {
+    const foundedNode = this.get(index);
+    if (!foundedNode) return false;
+    foundedNode.val = val;
+    return true;
+  }
 }
 var doublyLinkedList = new DoublyLinkedList();
 
 doublyLinkedList.push(5).push(10).push(15).push(20);
-console.log(doublyLinkedList.get(0).val); // 5
-console.log(doublyLinkedList.get(1).val); // 10
-console.log(doublyLinkedList.get(2).val); // 15
-console.log(doublyLinkedList.get(3).val); // 20
-console.log(doublyLinkedList.get(4)); // null
+console.log(doublyLinkedList.set(0, 10)); // true
+console.log(doublyLinkedList.length); // 4
+console.log(doublyLinkedList.head.val); // 10
+
+console.log(doublyLinkedList.set(10, 10)); // false
+
+console.log(doublyLinkedList.set(2, 100)); // true
+console.log(doublyLinkedList.head.next.next.val); // 100
