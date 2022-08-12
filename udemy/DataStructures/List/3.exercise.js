@@ -30,6 +30,21 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  pop() {
+    if (!this.length) return;
+    const removedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = removedNode.prev;
+      this.tail.next = null;
+    }
+    removedNode.prev = null;
+    removedNode.next = null;
+    this.length--;
+    return removedNode;
+  }
   unshift(val) {
     const newNode = new Node(val);
     if (!this.head) {
@@ -62,26 +77,31 @@ class DoublyLinkedList {
 }
 
 var doublyLinkedList = new DoublyLinkedList();
-console.log(doublyLinkedList.unshift(5)); // doublyLinkedList
+console.log(doublyLinkedList.push(5)); // doublyLinkedList
 console.log(doublyLinkedList.length); // 1
 console.log(doublyLinkedList.head.val); // 5
 console.log(doublyLinkedList.tail.val); // 5
-console.log(doublyLinkedList.unshift(10));
+console.log(doublyLinkedList.head.prev); // null
+console.log(doublyLinkedList.push(10));
 console.log(doublyLinkedList);
 console.log(doublyLinkedList.length); // 2
-console.log(doublyLinkedList.head.val); // 10
-console.log(doublyLinkedList.head.next.val); // 5
-console.log(doublyLinkedList.tail.val); // 5
-console.log(doublyLinkedList.unshift(15));
+console.log(doublyLinkedList.head.val); // 5
+console.log(doublyLinkedList.head.next.val); // 10
+console.log(doublyLinkedList.tail.val); // 10
+console.log(doublyLinkedList.head.next.prev.val); // 10
+console.log(doublyLinkedList.push(15));
 console.log(doublyLinkedList);
 console.log(doublyLinkedList.length); // 3
-console.log(doublyLinkedList.head.val); // 15
-console.log(doublyLinkedList.tail.val); // 5
-console.log(doublyLinkedList.head.next.next.val); // 5
+console.log(doublyLinkedList.head.val); // 5
+console.log(doublyLinkedList.tail.val); // 15
+console.log(doublyLinkedList.tail.prev.val); // 10
+console.log(doublyLinkedList.head.next.next.val); // 15
 
-console.log(doublyLinkedList.shift().val); // 15
+console.log(doublyLinkedList.pop().val); // 15
 console.log(doublyLinkedList.length); // 2
-console.log(doublyLinkedList.shift().val); // 10
+console.log(doublyLinkedList.pop().val); // 10
 console.log(doublyLinkedList.length); // 1
-console.log(doublyLinkedList.shift().val); // 5
+console.log(doublyLinkedList.pop().val); // 5
+console.log(doublyLinkedList.length); // 0
+console.log(doublyLinkedList.pop()); // undefined
 console.log(doublyLinkedList.length); // 0
