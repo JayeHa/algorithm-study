@@ -93,6 +93,15 @@ class DoublyLinkedList {
     }
     return current;
   }
+
+  set(index, val) {
+    const foundNode = this.get(index);
+    if (foundNode != null) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -102,4 +111,5 @@ list.push("2번째");
 list.push("3번째");
 list.push("4번째");
 list.push("5번째");
-console.log(list.get(5));
+console.log(list.set(5, "바뀐 5번째"));
+console.log(list);
