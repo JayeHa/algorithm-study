@@ -1,92 +1,87 @@
 /**
- * DLL push - Exercise
+ * DLL  - Exercise
   Implement the following on the DoublyLinkedList class
-
-  push
-  This function should accept a value add a node to the end of the DoublyLinkedList with the given value.
-  It should return the DoublyLinkedList.
  */
-{
-  class Node {
-    constructor(val) {
-      this.val = val;
-      this.next = null;
-      this.prev = null;
-    }
-  }
-
-  class DoublyLinkedList {
-    constructor(val) {
-      this.val = val;
-      this.head = null;
-      this.tail = null;
-      this.length = 0;
-    }
-
-    push(val) {
-      const newNode = new Node(val);
-      if (!this.length) {
-        this.head = newNode;
-        this.tail = newNode;
-      } else {
-        newNode.prev = this.tail;
-        this.tail.next = newNode;
-        this.tail = newNode;
-      }
-      this.length++;
-      return this;
-    }
+class Node {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
   }
 }
 
-/**
- * DLL unshift - Exercise
-  Implement the following on the DoublyLinkedList class
-
-  unshift
-  This function should accept a value and add a node to the beginning of the DoublyLinkedList with the given value. It should return the DoublyLinkedList.
- */
-{
-  class Node {
-    constructor(val) {
-      this.val = val;
-      this.next = null;
-      this.prev = null;
-    }
+class DoublyLinkedList {
+  constructor(val) {
+    this.val = val;
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
   }
+  push(val) {
+    const newNode = new Node(val);
+    if (!this.length) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.prev = this.tail;
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  unshift(val) {
+    const newNode = new Node(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  shift() {
+    if (!this.length) return;
 
-  class DoublyLinkedList {
-    constructor(val) {
-      this.val = val;
+    const removedNode = this.head;
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
-      this.length = 0;
+    } else {
+      const newHead = this.head.next;
+      removedNode.next = null;
+      newHead.prev = null;
+      this.head = newHead;
     }
-    push(val) {
-      const node = new Node(val);
-      if (this.head === null) {
-        this.head = node;
-        this.tail = this.head;
-      } else {
-        this.tail.next = node;
-        node.prev = this.tail;
-        this.tail = node;
-      }
-      this.length++;
-      return this;
-    }
-    unshift(val) {
-      const newNode = new Node(val);
-      if (!this.head) {
-        this.head = newNode;
-        this.tail = this.head;
-      } else {
-        this.head.prev = newNode;
-        newNode.next = this.head;
-        this.head = newNode;
-      }
-      this.length++;
-      return this;
-    }
+    this.length--;
+    return removedNode;
   }
 }
+
+var doublyLinkedList = new DoublyLinkedList();
+console.log(doublyLinkedList.unshift(5)); // doublyLinkedList
+console.log(doublyLinkedList.length); // 1
+console.log(doublyLinkedList.head.val); // 5
+console.log(doublyLinkedList.tail.val); // 5
+console.log(doublyLinkedList.unshift(10));
+console.log(doublyLinkedList);
+console.log(doublyLinkedList.length); // 2
+console.log(doublyLinkedList.head.val); // 10
+console.log(doublyLinkedList.head.next.val); // 5
+console.log(doublyLinkedList.tail.val); // 5
+console.log(doublyLinkedList.unshift(15));
+console.log(doublyLinkedList);
+console.log(doublyLinkedList.length); // 3
+console.log(doublyLinkedList.head.val); // 15
+console.log(doublyLinkedList.tail.val); // 5
+console.log(doublyLinkedList.head.next.next.val); // 5
+
+console.log(doublyLinkedList.shift().val); // 15
+console.log(doublyLinkedList.length); // 2
+console.log(doublyLinkedList.shift().val); // 10
+console.log(doublyLinkedList.length); // 1
+console.log(doublyLinkedList.shift().val); // 5
+console.log(doublyLinkedList.length); // 0
