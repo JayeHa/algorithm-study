@@ -117,6 +117,21 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index >= this.length) return;
+    if (index === 0) return this.shift;
+    if (index === this.length - 1) return this.pop();
+
+    const removedNode = this.get(index);
+    const beforeNode = removedNode.prev;
+    const afterNode = removedNode.next;
+
+    (beforeNode.next = afterNode), (afterNode.prev = beforeNode);
+    (removedNode.prev = null), (removedNode.next = null);
+    this.length--;
+    return removedNode;
+  }
 }
 
 const list = new DoublyLinkedList();
@@ -126,6 +141,6 @@ list.push("2번째");
 list.push("3번째");
 list.push("4번째");
 list.push("5번째");
-console.log(list.insert(4, "3.5번째"));
-console.log(list);
-console.log(list.get(4));
+console.log(list.remove(2));
+console.log("========");
+console.log(list.get(2));
